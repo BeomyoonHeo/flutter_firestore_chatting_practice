@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1041105843851",
+    "project_id": "flutter-firestore-chatting",
+    "storage_bucket": "flutter-firestore-chatting.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041105843851:android:982966ab270d1f9082868e",
+        "android_client_info": {
+          "package_name": "com.example.flutter_firestore_chatting_practice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041105843851-r2q12pe2vfe50sjootuvaq7b7sjpno9j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyPAGRhKQfKp9Fg9jzBB_l8GxMXaiCSDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041105843851-r2q12pe2vfe50sjootuvaq7b7sjpno9j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
