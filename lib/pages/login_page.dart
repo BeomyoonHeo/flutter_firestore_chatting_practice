@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firestore_chatting_practice/widgets/custom_input_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,6 +11,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   late double _deviceHeight;
   late double _deviceWidth;
+
+  final _loginFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
@@ -32,6 +35,7 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _pageTitle(),
+            _loginForm(),
           ],
         ),
       ),
@@ -47,6 +51,33 @@ class _LoginPageState extends State<LoginPage> {
           color: Colors.white,
           fontSize: 40,
           fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+
+  Widget _loginForm() {
+    return Container(
+      height: _deviceHeight * 0.18,
+      child: Form(
+        key: _loginFormKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CustomTexFormField(
+                onsaved: (_value) {},
+                regEx:
+                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                hintText: "Email",
+                obscureText: false),
+            CustomTexFormField(
+                onsaved: (_value) {},
+                regEx: r".{8,}",
+                hintText: "Password",
+                obscureText: true),
+          ],
         ),
       ),
     );
