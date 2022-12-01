@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firestore_chatting_practice/services/cloud_storage_service.dart';
 import 'package:flutter_firestore_chatting_practice/services/media_service.dart';
 import 'package:flutter_firestore_chatting_practice/services/navigation_services.dart';
 import 'package:get_it/get_it.dart';
@@ -56,8 +57,13 @@ class _SplashPageState extends State<SplashPage> {
     GetIt.instance.registerSingleton<NavigationService>(
       NavigationService(),
     );
+
     GetIt.instance.registerSingleton<MediaService>(
       MediaService(),
+    );
+
+    GetIt.instance.registerSingleton<CloudStorageService>(
+      CloudStorageService(),
     );
   }
 }
