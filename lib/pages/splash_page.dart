@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firestore_chatting_practice/services/navigation_services.dart';
+import 'package:get_it/get_it.dart';
 
 class SplashPage extends StatefulWidget {
   final VoidCallback onInitalizationComplete;
@@ -49,5 +51,9 @@ class _SplashPageState extends State<SplashPage> {
     _registerServices();
   }
 
-  void _registerServices() {}
+  void _registerServices() {
+    GetIt.instance.registerSingleton<NavigationService>(
+      NavigationService(),
+    );
+  }
 }
