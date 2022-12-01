@@ -6,7 +6,11 @@ import 'package:flutter_firestore_chatting_practice/services/navigation_services
 void main() {
   runApp(SplashPage(
     key: UniqueKey(),
-    onInitalizationComplete: () {},
+    onInitalizationComplete: () {
+      runApp(
+        MainApp(),
+      );
+    },
   ));
 }
 
@@ -22,7 +26,7 @@ class MainApp extends StatelessWidget {
           backgroundColor: const Color.fromRGBO(30, 29, 37, 1.0),
         ),
       ),
-      navigatorKey: NavigationService.navigatorKey,
+      //navigatorKey: NavigationService.navigatorKey,
     );
   }
 }
