@@ -50,6 +50,7 @@ class DefaultFirebaseOptions {
     projectId: 'flutter-firestore-chatting',
     authDomain: 'flutter-firestore-chatting.firebaseapp.com',
     storageBucket: 'flutter-firestore-chatting.appspot.com',
+    measurementId: 'G-GMHTRY2D07',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
