@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/custom_input_field.dart';
+import 'package:flutter_firestore_chatting_practice/widgets/rounded_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -27,15 +28,18 @@ class _LoginPageState extends State<LoginPage> {
           horizontal: _deviceWidth * 0.03,
           vertical: _deviceHeight * 0.02,
         ),
-        height: _deviceHeight * 0.98,
         width: _deviceWidth * 0.97,
+        height: _deviceHeight * 0.98,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _pageTitle(),
+            SizedBox(height: _deviceHeight * 0.04),
             _loginForm(),
+            SizedBox(height: _deviceHeight * 0.05),
+            _loginButton(),
           ],
         ),
       ),
@@ -58,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _loginForm() {
     return Container(
-      height: _deviceHeight * 0.18,
+      height: _deviceHeight * 0.20,
       child: Form(
         key: _loginFormKey,
         child: Column(
@@ -81,5 +85,13 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  Widget _loginButton() {
+    return RoundedButton(
+        name: 'Login',
+        height: _deviceHeight * 0.065,
+        width: _deviceWidth * 0.65,
+        onPressed: () {});
   }
 }
