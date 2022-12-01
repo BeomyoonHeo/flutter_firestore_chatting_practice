@@ -19,7 +19,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 1)).then(
+    Future.delayed(const Duration(seconds: 1)).then(
       (_) {
         _setup().then(
           (_) => widget.onInitalizationComplete(),
@@ -41,7 +41,7 @@ class _SplashPageState extends State<SplashPage> {
           child: Container(
             height: 200,
             width: 200,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
               fit: BoxFit.contain,
               image: AssetImage('assets/images/logo.png'),
