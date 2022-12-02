@@ -14,7 +14,7 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(SplashPage(
       key: UniqueKey(),
-      onInitalizationComplete: () {},
+      onInitializationComplete: () {},
     ));
 
     // Verify that our counter starts at 0.

@@ -7,8 +7,8 @@ import 'package:flutter_firestore_chatting_practice/services/navigation_services
 import 'package:get_it/get_it.dart';
 
 class SplashPage extends StatefulWidget {
-  final VoidCallback onInitalizationComplete; // 익명함수를 사용 할 수 있게 해주는 자료형
-  const SplashPage({required Key key, required this.onInitalizationComplete})
+  final VoidCallback onInitializationComplete; // 익명함수를 사용 할 수 있게 해주는 자료형
+  const SplashPage({required Key key, required this.onInitializationComplete})
       : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class _SplashPageState extends State<SplashPage> {
     Future.delayed(const Duration(seconds: 1)).then(
       (_) {
         _setup().then(
-          (_) => widget.onInitalizationComplete(),
+          (_) => widget.onInitializationComplete(),
         );
       },
     );

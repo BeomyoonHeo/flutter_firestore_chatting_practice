@@ -6,7 +6,7 @@ import 'package:flutter_firestore_chatting_practice/services/navigation_services
 void main() {
   runApp(SplashPage(
     key: UniqueKey(),
-    onInitalizationComplete: () {
+    onInitializationComplete: () {
       runApp(
         MainApp(),
       );
