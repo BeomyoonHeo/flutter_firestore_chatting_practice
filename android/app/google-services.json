@@ -29,6 +29,13 @@
             {
               "client_id": "1041105843851-r2q12pe2vfe50sjootuvaq7b7sjpno9j.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1041105843851-33togvrscj36i7pmt6qsgcng8ej95rmr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterFirestoreChattingPractice"
+              }
             }
           ]
         }
