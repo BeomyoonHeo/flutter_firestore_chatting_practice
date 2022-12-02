@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore_chatting_practice/pages/login_page.dart';
-
 import 'package:flutter_firestore_chatting_practice/pages/splash_page.dart';
 import 'package:flutter_firestore_chatting_practice/services/navigation_services.dart';
 
