@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore_chatting_practice/models/chat.dart';
+import 'package:flutter_firestore_chatting_practice/models/chat_message.dart';
+import 'package:flutter_firestore_chatting_practice/models/chat_user.dart';
 import 'package:flutter_firestore_chatting_practice/providers/authentication_provider.dart';
 import 'package:flutter_firestore_chatting_practice/providers/chats_page_provider.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/custom_list_view.tiles.dart';
@@ -77,7 +79,9 @@ class _ChatsPageState extends State<ChatsPage> {
             return ListView.builder(
               itemCount: _chats.length,
               itemBuilder: (context, index) {
-                return _chatTile();
+                return _chatTile(
+                  _chats[index],
+                );
               },
             );
           } else {
@@ -97,14 +101,22 @@ class _ChatsPageState extends State<ChatsPage> {
     );
   }
 
-  Widget _chatTile() {
+  Widget _chatTile(Chat _chat) {
+    List<ChatUser> _recepients = _chat.recepients();
+    bool _isActive = _recepients.any((_d) => _d.wasRecentlyActive());
+    String _subtitleText = '';
+    if (_chat.messages.isNotEmpty) {
+      _subtitleText = _chat.messages.first.type != MessageType.TEXT
+          ? '미디어 파일입니다.'
+          : _chat.messages.first.content;
+    }
     return CustomListViewTileWithActivity(
         height: _deviceHeight * 0.10,
-        title: '방갑습니당',
-        subtitle: '안녕하세요!',
-        imagePath: 'https://i.pravatar.cc/300',
-        isActive: false,
-        isActivity: false,
+        title: _chat.title(),
+        subtitle: _subtitleText,
+        imagePath: _chat.imageURL(),
+        isActive: _isActive,
+        isActivity: _chat.activity,
         onTap: () {});
   }
 }
