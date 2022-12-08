@@ -1,10 +1,14 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firestore_chatting_practice/providers/authentication_provider.dart';
+import 'package:flutter_firestore_chatting_practice/services/cloud_storage_service.dart';
+import 'package:flutter_firestore_chatting_practice/services/database_service.dart';
 import 'package:flutter_firestore_chatting_practice/services/media_service.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/custom_input_field.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/rounded_button.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/rounded_image.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -17,6 +21,10 @@ class _RegisterPageState extends State<RegisterPage> {
   late double _deviceHeight;
   late double _deviceWidth;
 
+  late AuthenticationProvider _auth;
+  late DatabaseService _db;
+  late CloudStorageService _cloudStorageService;
+
   String? _email;
   String? _password;
   String? _name;
@@ -27,6 +35,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    _auth = Provider.of<AuthenticationProvider>(context);
+    _db = GetIt.instance.get<DatabaseService>();
+    _cloudStorageService = GetIt.instance.get<CloudStorageService>();
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
     return _buildUI();
@@ -136,6 +147,9 @@ class _RegisterPageState extends State<RegisterPage> {
         name: 'Register',
         height: _deviceHeight * 0.065,
         width: _deviceWidth * 0.65,
-        onPressed: () async {});
+        onPressed: () async {
+          if (_registerFormKey.currentState!.validate() &&
+              _profileImage != null) {}
+        });
   }
 }
