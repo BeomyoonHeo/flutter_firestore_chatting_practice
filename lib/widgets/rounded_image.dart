@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -35,13 +37,14 @@ class RoundedImageFile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final img = Image.file(File(image.path!));
     return Container(
       width: size,
       height: size,
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage(image.path as String),
+          image: img.image,
         ),
         borderRadius: BorderRadius.all(Radius.circular(size)),
         color: Colors.black,
