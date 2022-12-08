@@ -36,6 +36,7 @@ class _ChatsPageState extends State<ChatsPage> {
 
   Widget _buildUI() {
     return Builder(builder: (BuildContext _context) {
+      _pageProvider = _context.watch<ChatsPageProvider>();
       return Container(
         padding: EdgeInsets.symmetric(
           horizontal: _deviceWidth * 0.03,
