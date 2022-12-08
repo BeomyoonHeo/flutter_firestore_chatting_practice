@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore_chatting_practice/pages/home_page.dart';
 import 'package:flutter_firestore_chatting_practice/pages/login_page.dart';
+import 'package:flutter_firestore_chatting_practice/pages/register_page.dart';
 
 import 'package:flutter_firestore_chatting_practice/pages/splash_page.dart';
 import 'package:flutter_firestore_chatting_practice/providers/authentication_provider.dart';
@@ -43,6 +44,7 @@ class MainApp extends StatelessWidget {
         routes: {
           '/login': (BuildContext context) => LoginPage(),
           '/home': (BuildContext context) => HomePage(),
+          '/register': (BuildContext context) => RegisterPage(),
         },
       ),
     );
