@@ -4,6 +4,7 @@ import 'package:flutter_firestore_chatting_practice/providers/authentication_pro
 import 'package:flutter_firestore_chatting_practice/services/cloud_storage_service.dart';
 import 'package:flutter_firestore_chatting_practice/services/database_service.dart';
 import 'package:flutter_firestore_chatting_practice/services/media_service.dart';
+import 'package:flutter_firestore_chatting_practice/services/navigation_services.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/custom_input_field.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/rounded_button.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/rounded_image.dart';
@@ -23,7 +24,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   late AuthenticationProvider _auth;
   late DatabaseService _db;
-  late CloudStorageService _cloudStorageService;
+  late CloudStorageService _cloudStorage;
+  late NavigationService _navigation;
 
   String? _email;
   String? _password;
@@ -37,7 +39,8 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     _auth = Provider.of<AuthenticationProvider>(context);
     _db = GetIt.instance.get<DatabaseService>();
-    _cloudStorageService = GetIt.instance.get<CloudStorageService>();
+    _navigation = GetIt.instance.get<NavigationService>();
+    _cloudStorage = GetIt.instance.get<CloudStorageService>();
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
     return _buildUI();
@@ -156,11 +159,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 _email!,
                 _password!); // AuthenticationDB에 가입 되고 나서 Uid를 반환하여 준다.
 
-            String? _imageURL = await _cloudStorageService // Storage에 이미지를 저장
+            String? _imageURL = await _cloudStorage // Storage에 이미지를 저장
                 .saveUserImageToStorage(_uid!, _profileImage!);
 
             await _db.createUser(_uid, _email!, _name!,
                 _imageURL!); //모든 저장 로직이 끝난 직후 마지막으로 DB에 사용자 정보를 insert
+            _navigation.goBack();
           }
         });
   }
