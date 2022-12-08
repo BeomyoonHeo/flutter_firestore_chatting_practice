@@ -9,6 +9,20 @@ class DatabaseService {
 
   DatabaseService() {}
 
+  Future<void> createUser(
+      String _uid, String _email, String _name, String _imageURL) async {
+    try {
+      await _db.collection(USER_COLLECTION).doc(_uid).set({
+        'email': _email,
+        'image': _imageURL,
+        'last_active': DateTime.now(),
+        'name': _name,
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   //firestore의 collection아이디를 가지고 온다.
   Future<DocumentSnapshot> getUser(String _uid) {
     return _db.collection(USER_COLLECTION).doc(_uid).get();
