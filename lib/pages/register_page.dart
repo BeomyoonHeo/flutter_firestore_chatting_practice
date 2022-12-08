@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore_chatting_practice/services/media_service.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/custom_input_field.dart';
+import 'package:flutter_firestore_chatting_practice/widgets/rounded_button.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/rounded_image.dart';
 import 'package:get_it/get_it.dart';
 
@@ -48,7 +49,10 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               _profileImageField(),
               SizedBox(height: _deviceHeight * 0.05),
-              _registerform(),
+              _registerForm(),
+              SizedBox(height: _deviceHeight * 0.05),
+              _registerButton(),
+              SizedBox(height: _deviceHeight * 0.02),
             ]),
       ),
     );
@@ -84,7 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  Widget _registerform() {
+  Widget _registerForm() {
     return Container(
       height: _deviceHeight * 0.35,
       child: Form(
@@ -125,5 +129,13 @@ class _RegisterPageState extends State<RegisterPage> {
             ]),
       ),
     );
+  }
+
+  Widget _registerButton() {
+    return RoundedButton(
+        name: 'Register',
+        height: _deviceHeight * 0.065,
+        width: _deviceWidth * 0.65,
+        onPressed: () async {});
   }
 }
