@@ -47,16 +47,26 @@ class _ChatsPageState extends State<ChatsPage> {
                   color: Color.fromRGBO(0, 82, 218, 1.0),
                 )),
           ),
-          CustomListViewTileWithActivity(
-              height: _deviceHeight * 0.10,
-              title: '방갑습니당',
-              subtitle: '안녕하세요!',
-              imagePath: 'https://i.pravatar.cc/300',
-              isActive: false,
-              isActivity: false,
-              onTap: () {})
+          _chatsList(),
         ],
       ),
     );
+  }
+
+  Widget _chatsList() {
+    return Expanded(
+      child: _chatTile(),
+    );
+  }
+
+  Widget _chatTile() {
+    return CustomListViewTileWithActivity(
+        height: _deviceHeight * 0.10,
+        title: '방갑습니당',
+        subtitle: '안녕하세요!',
+        imagePath: 'https://i.pravatar.cc/300',
+        isActive: false,
+        isActivity: false,
+        onTap: () {});
   }
 }
