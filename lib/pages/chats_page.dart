@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firestore_chatting_practice/models/chat.dart';
 import 'package:flutter_firestore_chatting_practice/providers/authentication_provider.dart';
 import 'package:flutter_firestore_chatting_practice/providers/chats_page_provider.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/custom_list_view.tiles.dart';
@@ -68,8 +69,31 @@ class _ChatsPageState extends State<ChatsPage> {
   }
 
   Widget _chatsList() {
+    List<Chat>? _chats = _pageProvider.chats;
     return Expanded(
-      child: _chatTile(),
+      child: (() {
+        if (_chats != null) {
+          if (_chats.length != 0) {
+            return ListView.builder(
+              itemCount: _chats.length,
+              itemBuilder: (context, index) {
+                return _chatTile();
+              },
+            );
+          } else {
+            return Center(
+              child: Text(
+                '채팅 내역이 없습니다.',
+                style: TextStyle(color: Colors.white),
+              ),
+            );
+          }
+        } else {
+          return Center(
+            child: CircularProgressIndicator(color: Colors.white),
+          );
+        }
+      })(),
     );
   }
 

@@ -10,7 +10,7 @@ class ChatMessage {
   final String senderID;
   final MessageType type;
   final String content;
-  final DateTime sentTime;
+  final Timestamp sentTime;
 
   ChatMessage({
     required this.content,
@@ -33,8 +33,8 @@ class ChatMessage {
     return ChatMessage(
         content: _json['content'],
         type: _messageType,
-        senderID: _json['senderID'],
-        sentTime: _json['sentTime']);
+        senderID: _json['sender_id'],
+        sentTime: _json['sent_time']);
   }
 
   Map<String, dynamic> tojson() {
@@ -53,7 +53,7 @@ class ChatMessage {
       'content': content,
       'type': _messageType,
       'sender_id': senderID,
-      'sent_time': Timestamp.fromDate(sentTime),
+      'sent_time': Timestamp.fromDate(sentTime.toDate()),
     };
   }
 }
