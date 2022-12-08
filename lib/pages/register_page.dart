@@ -156,15 +156,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 _email!,
                 _password!); // AuthenticationDB에 가입 되고 나서 Uid를 반환하여 준다.
 
-            // String? _imageURL = await _cloudStorageService // Storage에 이미지를 저장
-            //     .saveUserImageToStorage(_uid!, _profileImage!);
+            String? _imageURL = await _cloudStorageService // Storage에 이미지를 저장
+                .saveUserImageToStorage(_uid!, _profileImage!);
 
-            print("uid :${_uid}");
-            print("email :${_email}");
-            print("name :${_name}");
-
-            // await _db.createUser(_uid, _email!, _name!,
-            //     _imageURL!); //모든 저장 로직이 끝난 직후 마지막으로 DB에 사용자 정보를 insert
+            await _db.createUser(_uid, _email!, _name!,
+                _imageURL!); //모든 저장 로직이 끝난 직후 마지막으로 DB에 사용자 정보를 insert
           }
         });
   }
