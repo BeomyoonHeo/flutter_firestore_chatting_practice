@@ -33,11 +33,11 @@ class AuthenticationProvider extends ChangeNotifier {
                 'image': _userData['image'],
               },
             );
-            print(user.toMap());
+            _navigationService.removeAndNavigateToRoute('/home');
           },
         );
       } else {
-        print('Not Authenticated');
+        _navigationService.removeAndNavigateToRoute('/login');
       }
     });
   }

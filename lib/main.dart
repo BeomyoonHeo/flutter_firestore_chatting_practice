@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firestore_chatting_practice/pages/home_page.dart';
 import 'package:flutter_firestore_chatting_practice/pages/login_page.dart';
 
 import 'package:flutter_firestore_chatting_practice/pages/splash_page.dart';
@@ -41,6 +42,7 @@ class MainApp extends StatelessWidget {
         initialRoute: '/login',
         routes: {
           '/login': (BuildContext context) => LoginPage(),
+          '/home': (BuildContext context) => HomePage(),
         },
       ),
     );
