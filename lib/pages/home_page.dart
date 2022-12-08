@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firestore_chatting_practice/pages/chats_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,9 +11,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentPage = 0;
   List<Widget> _pages = [
-    Container(
-      color: Colors.red,
-    ),
+    ChatsPage(),
     Container(
       color: Colors.green,
     ),
