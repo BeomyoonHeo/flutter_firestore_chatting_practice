@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore_chatting_practice/providers/authentication_provider.dart';
+import 'package:flutter_firestore_chatting_practice/widgets/custom_list_view.tiles.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/top_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -46,6 +47,14 @@ class _ChatsPageState extends State<ChatsPage> {
                   color: Color.fromRGBO(0, 82, 218, 1.0),
                 )),
           ),
+          CustomListViewTileWithActivity(
+              height: _deviceHeight * 0.10,
+              title: '방갑습니당',
+              subtitle: '안녕하세요!',
+              imagePath: 'https://i.pravatar.cc/300',
+              isActive: false,
+              isActivity: false,
+              onTap: () {})
         ],
       ),
     );
