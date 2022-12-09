@@ -112,7 +112,7 @@ class _ChatsPageState extends State<ChatsPage> {
     String _subtitleText = '';
     if (_chat.messages.isNotEmpty) {
       _subtitleText = _chat.messages.first.type != MessageType.TEXT
-          ? '미디어 파일입니다.'
+          ? '이미지'
           : _chat.messages.first.content;
     }
     return CustomListViewTileWithActivity(
