@@ -21,7 +21,7 @@ class ChatPageProvider extends ChangeNotifier {
   String _chatId;
   List<ChatMessage>? messages;
 
-  late StreamSubscription _messages;
+  late StreamSubscription _messagesStream;
 
   String? _message;
 
@@ -38,6 +38,7 @@ class ChatPageProvider extends ChangeNotifier {
 
   @override
   void dispose() {
+    _messagesStream.cancel();
     super.dispose();
   }
 
