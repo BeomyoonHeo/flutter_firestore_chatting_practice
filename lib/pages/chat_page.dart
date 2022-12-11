@@ -84,7 +84,8 @@ class _ChatPageState extends State<ChatPage> {
                         color: Color.fromRGBO(0, 82, 218, 1.0),
                       ),
                     ),
-                  )
+                  ),
+                  _messagesListView(),
                 ],
               ),
             ),
@@ -92,5 +93,40 @@ class _ChatPageState extends State<ChatPage> {
         );
       },
     );
+  }
+
+  Widget _messagesListView() {
+    if (_pageProvider.messages != null) {
+      if (_pageProvider.messages!.length != 0) {
+        return Container(
+          height: _deviceHeight * 0.74,
+          child: ListView.builder(
+            itemCount: _pageProvider.messages!.length,
+            itemBuilder: (context, index) {
+              return Container(
+                child: Text(
+                  '${_pageProvider.messages![index].content}',
+                  style: TextStyle(color: Colors.white),
+                ),
+              );
+            },
+          ),
+        );
+      } else {
+        return Align(
+          alignment: Alignment.center,
+          child: Text(
+            "인사를 나눠보세요!",
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+      }
+    } else {
+      return Center(
+        child: CircularProgressIndicator(
+          color: Colors.white,
+        ),
+      );
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore_chatting_practice/models/chat_message.dart';
 import 'package:flutter_firestore_chatting_practice/providers/authentication_provider.dart';
@@ -69,6 +70,25 @@ class ChatPageProvider extends ChangeNotifier {
         sentTime: Timestamp.fromDate(DateTime.now()),
       );
       _db.addMessageToChat(_chatId, _messageToSend);
+    }
+  }
+
+  void sendImageMessage() async {
+    try {
+      PlatformFile? _file = await _media.pickImageFromLibrary();
+      if (_file != null) {
+        String? _downloadURL = await _storage.saveChatImageToStorage(
+            _chatId, _auth.user.uid, _file);
+        ChatMessage _messageToSend = ChatMessage(
+          content: _downloadURL!,
+          type: MessageType.IMAGE,
+          senderID: _auth.user.uid,
+          sentTime: Timestamp.fromDate(DateTime.now()),
+        );
+      }
+    } catch (e) {
+      print('메세지 보내기 중 에러 발생!');
+      print(e);
     }
   }
 
