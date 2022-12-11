@@ -163,6 +163,8 @@ class _ChatPageState extends State<ChatPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _messageTextField(),
+            _sendMessageButton(),
+            _imageMessageButton(),
           ],
         ),
       ),
@@ -179,6 +181,40 @@ class _ChatPageState extends State<ChatPage> {
           regEx: r"^(?!\s*$).+",
           hintText: '메세지를 적어주세요',
           obscureText: false),
+    );
+  }
+
+  Widget _sendMessageButton() {
+    double _size = _deviceHeight * 0.04;
+    return Container(
+      width: _size,
+      height: _size,
+      margin: EdgeInsets.only(bottom: 10, right: 5),
+      child: IconButton(
+        icon: Icon(
+          Icons.send,
+          color: Colors.white,
+        ),
+        onPressed: () {},
+      ),
+    );
+  }
+
+  Widget _imageMessageButton() {
+    double _size = _deviceHeight * 0.04;
+    return Container(
+      height: _size,
+      width: _size,
+      child: FloatingActionButton(
+        backgroundColor: Color.fromRGBO(
+          0,
+          82,
+          218,
+          1.0,
+        ),
+        onPressed: () {},
+        child: Icon(Icons.camera_enhance),
+      ),
     );
   }
 }
