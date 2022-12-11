@@ -34,12 +34,27 @@ class ChatPageProvider extends ChangeNotifier {
     _storage = GetIt.instance.get<CloudStorageService>();
     _media = GetIt.instance.get<MediaService>();
     _navigation = GetIt.instance.get<NavigationService>();
+    listenToMessages();
   }
 
   @override
   void dispose() {
     _messagesStream.cancel();
     super.dispose();
+  }
+
+  void listenToMessages() {
+    try {
+      _messagesStream = _db.streamMessagesForChat(_chatId).listen((_snapshot) {
+        List<ChatMessage> _messsages = _snapshot.docs.map((_m) {
+          Map<String, dynamic> _messageData = _m.data() as Map<String, dynamic>;
+          return ChatMessage.fromJSON(_messageData);
+        }).toList();
+      });
+    } catch (e) {
+      print('메세지에서 에러 발생');
+      print(e);
+    }
   }
 
   void goBack() {

@@ -42,7 +42,6 @@ class ChatsPageProvider extends ChangeNotifier {
               //firebase에서 가져온 member collection을 전부 ChatUser로 치환하여 Object로 반환
               for (var _uid in _chatData['members']) {
                 DocumentSnapshot _userSnapshot = await _db.getUser(_uid);
-
                 Map<String, dynamic> _userData =
                     _userSnapshot.data() as Map<String, dynamic>;
 
