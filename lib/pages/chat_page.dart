@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore_chatting_practice/models/chat.dart';
+import 'package:flutter_firestore_chatting_practice/models/chat_message.dart';
 import 'package:flutter_firestore_chatting_practice/providers/authentication_provider.dart';
 import 'package:flutter_firestore_chatting_practice/providers/chat_page_provider.dart';
 import 'package:flutter_firestore_chatting_practice/services/navigation_services.dart';
+import 'package:flutter_firestore_chatting_practice/widgets/custom_list_view.tiles.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/top_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -103,10 +105,20 @@ class _ChatPageState extends State<ChatPage> {
           child: ListView.builder(
             itemCount: _pageProvider.messages!.length,
             itemBuilder: (context, index) {
+              ChatMessage _message = _pageProvider.messages![index];
+              bool _isOwnMessage = _message.senderID == _auth.user.uid;
               return Container(
-                child: Text(
-                  '${_pageProvider.messages![index].content}',
-                  style: TextStyle(color: Colors.white),
+                child: CustomChatListViewTile(
+                  width: _deviceWidth * 0.8,
+                  deviceHeight: _deviceHeight,
+                  isOwnMessage: _isOwnMessage,
+                  message: _message,
+                  sender: this
+                      .widget
+                      .chat
+                      .memebers
+                      .where((_m) => _m.uid == _message.senderID)
+                      .first,
                 ),
               );
             },

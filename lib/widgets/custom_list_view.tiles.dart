@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firestore_chatting_practice/models/chat_message.dart';
+import 'package:flutter_firestore_chatting_practice/models/chat_user.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/rounded_image.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -60,6 +62,51 @@ class CustomListViewTileWithActivity extends StatelessWidget {
                   fontSize: 12,
                   fontWeight: FontWeight.w400),
             ),
+    );
+  }
+}
+
+class CustomChatListViewTile extends StatelessWidget {
+  final double width;
+  final double deviceHeight;
+  final bool isOwnMessage;
+  final ChatMessage message;
+  final ChatUser sender;
+
+  const CustomChatListViewTile({
+    super.key,
+    required this.width,
+    required this.deviceHeight,
+    required this.isOwnMessage,
+    required this.message,
+    required this.sender,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(bottom: 10),
+      width: width,
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment:
+            isOwnMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          !isOwnMessage
+              ? RoundedImageNetwork(
+                  key: UniqueKey(),
+                  imagePath: sender.imageURL,
+                  size: width * 0.04)
+              : Container(),
+          SizedBox(
+            width: width * 0.05,
+          ),
+          message.type == MessageType.TEXT
+              ? Text(message.content)
+              : Text(message.content),
+        ],
+      ),
     );
   }
 }
