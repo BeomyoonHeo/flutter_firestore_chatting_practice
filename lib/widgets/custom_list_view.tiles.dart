@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore_chatting_practice/models/chat_message.dart';
 import 'package:flutter_firestore_chatting_practice/models/chat_user.dart';
+import 'package:flutter_firestore_chatting_practice/widgets/message_bubble.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/rounded_image.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -103,7 +104,11 @@ class CustomChatListViewTile extends StatelessWidget {
             width: width * 0.05,
           ),
           message.type == MessageType.TEXT
-              ? Text(message.content)
+              ? TextMessageBubble(
+                  isOwnMessage: isOwnMessage,
+                  message: message,
+                  height: deviceHeight * 0.06,
+                  width: width)
               : Text(message.content),
         ],
       ),
