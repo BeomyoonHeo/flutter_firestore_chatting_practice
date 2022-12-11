@@ -195,7 +195,13 @@ class _ChatPageState extends State<ChatPage> {
           Icons.send,
           color: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () {
+          if (_messageFormState.currentState!.validate()) {
+            _messageFormState.currentState!.save();
+            _pageProvider.sendTextMessge();
+            _messageFormState.currentState!.reset();
+          }
+        },
       ),
     );
   }
