@@ -4,6 +4,7 @@ import 'package:flutter_firestore_chatting_practice/models/chat_message.dart';
 import 'package:flutter_firestore_chatting_practice/providers/authentication_provider.dart';
 import 'package:flutter_firestore_chatting_practice/providers/chat_page_provider.dart';
 import 'package:flutter_firestore_chatting_practice/services/navigation_services.dart';
+import 'package:flutter_firestore_chatting_practice/widgets/custom_input_field.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/custom_list_view.tiles.dart';
 import 'package:flutter_firestore_chatting_practice/widgets/top_bar.dart';
 import 'package:provider/provider.dart';
@@ -88,6 +89,7 @@ class _ChatPageState extends State<ChatPage> {
                     ),
                   ),
                   _messagesListView(),
+                  _sendMessageForm(),
                 ],
               ),
             ),
@@ -140,5 +142,43 @@ class _ChatPageState extends State<ChatPage> {
         ),
       );
     }
+  }
+
+  Widget _sendMessageForm() {
+    return Container(
+      height: _deviceHeight * 0.06,
+      decoration: BoxDecoration(
+        color: Color.fromRGBO(30, 29, 37, 1.0),
+        borderRadius: BorderRadius.circular(100),
+      ),
+      margin: EdgeInsets.symmetric(
+        horizontal: _deviceWidth * 0.04,
+        vertical: _deviceHeight * 0.001,
+      ),
+      child: Form(
+        key: _messageFormState,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _messageTextField(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _messageTextField() {
+    return SizedBox(
+      width: _deviceWidth * 0.65,
+      child: CustomTexFormField(
+          onsaved: (_value) {
+            _pageProvider.message = _value;
+          },
+          regEx: r"^(?!\s*$).+",
+          hintText: '메세지를 적어주세요',
+          obscureText: false),
+    );
   }
 }
