@@ -37,7 +37,7 @@ class ChatsPageProvider extends ChangeNotifier {
             (_d) async {
               Map<String, dynamic> _chatData =
                   _d.data() as Map<String, dynamic>;
-
+              print('_userSnapshot.id = ${_chatData}');
               List<ChatUser> _members = [];
               //firebase에서 가져온 member collection을 전부 ChatUser로 치환하여 Object로 반환
               for (var _uid in _chatData['members']) {
