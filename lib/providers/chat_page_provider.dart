@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore_chatting_practice/models/chat_message.dart';
 import 'package:flutter_firestore_chatting_practice/providers/authentication_provider.dart';
@@ -50,11 +51,30 @@ class ChatPageProvider extends ChangeNotifier {
           Map<String, dynamic> _messageData = _m.data() as Map<String, dynamic>;
           return ChatMessage.fromJSON(_messageData);
         }).toList();
+        messages = _messsages;
+        notifyListeners();
       });
     } catch (e) {
       print('메세지에서 에러 발생');
       print(e);
     }
+  }
+
+  void sendTextMessge() {
+    if (_message != null) {
+      ChatMessage _messageToSend = ChatMessage(
+        content: _message!,
+        type: MessageType.TEXT,
+        senderID: _auth.user.uid,
+        sentTime: Timestamp.fromDate(DateTime.now()),
+      );
+      _db.addMessageToChat(_chatId, _messageToSend);
+    }
+  }
+
+  void deleteChat() {
+    goBack();
+    _db.deleteChat(_chatId);
   }
 
   void goBack() {
